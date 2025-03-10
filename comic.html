@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comic - Catculus Crisis</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      :root {
+        --dark-blue: #0a0a5a;
+        --background: #cfe6ff;
+        --text-size-large: 3vw;
+        --cute-font: "STIX Two Math", serif;
+        --hover-color: #ff3060;
+        --soft-shadow: rgba(0, 0, 0, 0.15);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--cute-font), Arial, sans-serif;
+        background: var(--background);
+        color: var(--dark-blue);
+        margin: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+        background-color: #e3f2fd;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 10px var(--soft-shadow);
+        border-radius: 0 0 20px 20px;
+      }
+
+      .logo {
+        height: 80px;
+        margin-right: 2rem;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .logo:hover {
+        transform: rotate(5deg) scale(1.1);
+      }
+
+      .nav-bar {
+        display: flex;
+        gap: 2rem;
+        font-weight: bold;
+      }
+
+      .nav-bar a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--dark-blue);
+        transition: color 0.3s, transform 0.3s;
+        font-family: var(--cute-font);
+      }
+
+      .nav-bar a:hover {
+        color: var(--hover-color);
+        transform: scale(1.1) rotate(-2deg);
+      }
+
+      /* Comic Slider */
+      .slider-container {
+        margin-top: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        max-width: 800px;
+        height: 600px;
+        overflow: hidden;
+      }
+
+      .slider {
+        display: flex;
+        overflow: hidden;
+        max-width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slide {
+        display: none;
+        width: 800px;
+        height: 500px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      .slide.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Third Image Section (with Angels) */
+      .third {
+        position: relative;
+      }
+
+      .third img.image-box {
+        width: 800px;
+        height: 500px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      /* Floating Angel */
+      .floating-angel {
+        position: absolute;
+        width: 165px;
+        height: auto;
+        top: 15%;
+        right: 10%;
+        animation: float 3s infinite ease-in-out alternate;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      /* Floating Baddie (Red Angel) */
+      .floating-baddie {
+        position: absolute;
+        width: 250px;
+        height: auto;
+        top: 15%;
+        left: -0.1%;
+        animation: float 3s infinite ease-in-out alternate;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        100% {
+          transform: translateY(-15px);
+        }
+      }
+
+      /* Hover Effect */
+      .floating-angel:hover,
+      .floating-baddie:hover {
+        transform: scale(1.2);
+      }
+
+      /* 🔹 Dots Navigation */
+      .dots {
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .dot {
+        height: 12px;
+        width: 12px;
+        margin: 5px;
+        background-color: gray;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .dot.active {
+        background-color: black;
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="LOGO.png" alt="Catculus Crisis Logo" class="logo" />
+      <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="comic.html" class="active">Comic</a>
+        <a href="authors.html">Authors</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <div class="slider-container">
+      <button class="prev" onclick="changeSlide(-1)">&#9665;</button>
+      <div class="slider">
+        <img src="1.png" class="slide active" />
+        <img src="2.png" class="slide" />
+        <div class="slide third">
+          <img src="3.png" class="image-box" />
+
+          <!-- Floating Angel (White) -->
+          <div class="angel-container">
+            <img
+              src="angel.svg"
+              class="floating-angel"
+              alt="White Angel"
+              onclick="window.location.href='angel.html'"
+            />
+          </div>
+
+          <!-- Floating Baddie (Red) -->
+          <div class="baddie-container">
+            <img
+              src="baddie.svg"
+              class="floating-baddie"
+              alt="Red Angel"
+              onclick="window.location.href='baddie.html'"
+            />
+          </div>
+        </div>
+      </div>
+      <button class="next" onclick="changeSlide(1)">&#9655;</button>
+    </div>
+
+    <!-- 🔹 Dots Navigation -->
+    <div class="dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+
+    <script>
+      let currentIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+
+      function changeSlide(step) {
+        slides[currentIndex].classList.remove("active");
+        dots[currentIndex].classList.remove("active");
+
+        currentIndex = (currentIndex + step + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+      }
+
+      function goToSlide(index) {
+        slides[currentIndex].classList.remove("active");
+        dots[currentIndex].classList.remove("active");
+
+        currentIndex = index;
+
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+      }
+    </script>
+  </body>
+</html>

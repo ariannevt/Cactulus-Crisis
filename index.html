@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catculus Crisis</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --dark-blue: #0a0a5a;
+        --background: #cfe6ff;
+        --text-size-large: 6vw;
+        --cute-font: "STIX Two Math", serif;
+        --hover-color: #ff3060;
+        --soft-shadow: rgba(0, 0, 0, 0.15);
+      }
+
+      body {
+        font-family: var(--cute-font), Arial, sans-serif;
+        background: var(--background);
+        color: var(--dark-blue);
+        margin: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        position: relative;
+      }
+
+      /* Header Section */
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+        background-color: #e3f2fd; /* Keeping the same color as other pages */
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 10px var(--soft-shadow);
+        border-radius: 0 0 20px 20px;
+        transition: all 0.3s ease-in-out;
+      }
+      .logo {
+        height: 80px;
+        margin-right: 2rem;
+        transition: transform 0.3s ease-in-out;
+      }
+      .logo:hover {
+        transform: rotate(5deg) scale(1.1);
+      }
+      .nav-bar {
+        display: flex;
+        gap: 2rem;
+        font-weight: bold;
+      }
+      .nav-bar a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--dark-blue);
+        transition: color 0.3s, transform 0.3s;
+        font-family: var(--cute-font);
+      }
+      .nav-bar a:hover {
+        color: var(--hover-color);
+        transform: scale(1.1) rotate(-2deg);
+      }
+
+      /* Title Styling */
+      .text-container {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        font-size: var(--text-size-large);
+        font-weight: bold;
+        color: var(--dark-blue);
+        font-family: var(--cute-font);
+        text-shadow: 0.4vw 0.4vw var(--soft-shadow);
+        transition: transform 0.3s ease-out;
+        padding: 50px;
+      }
+
+      /* Interactive Animation */
+      .text-container:hover {
+        transform: scale(1.1) rotate(-2deg);
+        color: var(--hover-color);
+      }
+
+      /* Top-right Corner Image (Larger Formula Image) */
+      .top-right-image {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 200px; /* Increased size */
+      }
+
+      /* Bottom-left Corner Image (Main Character - Moved Further Down) */
+      .bottom-left-image {
+        position: absolute;
+        bottom: 0px; /* Moved further down */
+        left: 10px;
+        width: 300px; /* Kept the size but positioned better */
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .text-container {
+          font-size: 10vw;
+        }
+        .top-right-image {
+          width: 150px; /* Adjusted for mobile */
+          top: 5px;
+          right: 5px;
+        }
+        .bottom-left-image {
+          width: 200px; /* Adjusted for mobile */
+          bottom: 0;
+          left: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header (Kept the same as other pages) -->
+    <header class="header">
+      <img src="LOGO.png" alt="Catculus Crisis Logo" class="logo" />
+      <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="comic.html">Comic</a>
+        <a href="authors.html">Authors</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <!-- Top-right Corner Image (Larger Formula Image) -->
+    <img src="image1.png" alt="Formula Image" class="top-right-image" />
+
+    <!-- Centered Title -->
+    <div class="text-container">
+      <span class="hover-text">Catculus Crisis</span>
+    </div>
+
+    <!-- Bottom-left Corner Image (Main Character - Moved Further Down) -->
+    <img src="main.png" alt="Main Character" class="bottom-left-image" />
+  </body>
+</html>

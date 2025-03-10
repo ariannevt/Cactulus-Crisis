@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moral - Catculus Crisis</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      :root {
+        --dark-blue: #0a0a5a;
+        --background: #cfe6ff;
+        --hover-color: #ff3060;
+        --soft-shadow: rgba(0, 0, 0, 0.15);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "STIX Two Math", serif, Arial, sans-serif;
+        background: var(--background);
+        color: var(--dark-blue);
+        text-align: center;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      /* Moral Image - Made Smaller */
+      .moral-image {
+        max-width: 50%; /* Image is now 50% of the screen width */
+        height: auto; /* Keeps aspect ratio */
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px var(--soft-shadow);
+        margin-bottom: 20px;
+      }
+
+      /* Make Image Even Smaller on Mobile */
+      @media (max-width: 768px) {
+        .moral-image {
+          max-width: 70%;
+        }
+      }
+
+      /* Back Button */
+      .back-button {
+        background: #e6e6e6;
+        border: 2px solid #777;
+        padding: 12px 24px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px var(--soft-shadow);
+      }
+
+      .back-button:hover {
+        background: var(--hover-color);
+        border-color: var(--hover-color);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Moral Image (Now Smaller & Centered) -->
+    <img src="moral.png" alt="Moral Image" class="moral-image" />
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">Back</a>
+  </body>
+</html>

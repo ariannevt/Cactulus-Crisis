@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Angel - Catculus Crisis</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      :root {
+        --dark-blue: #0a0a5a;
+        --background: #cfe6ff;
+        --hover-color: #ff3060;
+        --soft-shadow: rgba(0, 0, 0, 0.15);
+        --button-bg: #e6e6e6;
+        --button-border: #777;
+        --button-shadow: rgba(0, 0, 0, 0.3);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "STIX Two Math", serif, Arial, sans-serif;
+        background: var(--background);
+        color: var(--dark-blue);
+        margin: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+        background-color: #e3f2fd;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 10px var(--soft-shadow);
+        border-radius: 0 0 20px 20px;
+      }
+
+      .logo {
+        height: 80px;
+        margin-right: 2rem;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .logo:hover {
+        transform: rotate(5deg) scale(1.1);
+      }
+
+      .nav-bar {
+        display: flex;
+        gap: 2rem;
+        font-weight: bold;
+      }
+
+      .nav-bar a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--dark-blue);
+        transition: color 0.3s, transform 0.3s;
+        font-family: "STIX Two Math", serif;
+      }
+
+      .nav-bar a:hover {
+        color: var(--hover-color);
+        transform: scale(1.1) rotate(-2deg);
+      }
+
+      /* Slider Container */
+      .slider-container {
+        margin-top: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        max-width: 900px;
+        height: 600px;
+      }
+
+      .slider {
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slide {
+        display: none;
+        width: 800px;
+        height: 500px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      .slide.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Styled Navigation Buttons */
+      .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--button-bg);
+        border: 2px solid var(--button-border);
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+        font-weight: bold;
+        color: black;
+        user-select: none;
+        box-shadow: 2px 2px 5px var(--button-shadow);
+      }
+
+      .nav-button:hover {
+        background: var(--hover-color);
+        border-color: var(--hover-color);
+        color: white;
+      }
+
+      .prev {
+        left: -80px;
+      }
+
+      .next {
+        right: -80px;
+      }
+
+      /* Ensure buttons stay inside container on smaller screens */
+      @media (max-width: 900px) {
+        .prev {
+          left: -50px;
+        }
+        .next {
+          right: -50px;
+        }
+      }
+
+      /* Dots Navigation */
+      .dots {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .dot {
+        height: 12px;
+        width: 12px;
+        margin: 5px;
+        background-color: gray;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .dot.active {
+        background-color: black;
+        transform: scale(1.2);
+      }
+
+      /* Moral Button */
+      .moral-button {
+        display: none; /* Hidden by default */
+        background: #e6e6e6;
+        border: 2px solid #777;
+        padding: 12px 24px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px var(--soft-shadow);
+        margin-top: 20px;
+      }
+
+      .moral-button:hover {
+        background: var(--hover-color);
+        border-color: var(--hover-color);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <img src="LOGO.png" alt="Catculus Crisis Logo" class="logo" />
+      <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="comic.html">Comic</a>
+        <a href="authors.html">Authors</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <!-- Angel Path Slider -->
+    <div class="slider-container">
+      <button class="nav-button prev" onclick="changeSlide(-1)">&#9665;</button>
+      <div class="slider">
+        <img src="3a.png" class="slide active" />
+        <img src="3b.png" class="slide" />
+        <img src="3c.png" class="slide" id="final-slide" />
+      </div>
+      <button class="nav-button next" onclick="changeSlide(1)">&#9655;</button>
+    </div>
+
+    <!-- Moral Button (Hidden Initially) -->
+    <a href="moral.html" class="moral-button" id="moral-button">Moral</a>
+
+    <!-- Dots Navigation -->
+    <div class="dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+
+    <script>
+      let currentIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      const moralButton = document.getElementById("moral-button");
+
+      function changeSlide(step) {
+        slides[currentIndex].classList.remove("active");
+        dots[currentIndex].classList.remove("active");
+
+        currentIndex = (currentIndex + step + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+
+        // Show "Moral" button only on 3c image
+        if (slides[currentIndex].id === "final-slide") {
+          moralButton.style.display = "block";
+        } else {
+          moralButton.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
