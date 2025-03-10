@@ -94,7 +94,7 @@
         justify-content: center;
         position: relative;
         max-width: 900px;
-        height: 600px;
+        /* height: 600px; */
       }
 
       .slider {
@@ -145,6 +145,35 @@
       .nav-button:hover {
         background: var(--hover-color);
         border-color: var(--hover-color);
+        color: white;
+      }
+
+      /* Disabled buttons */
+      .nav-button_disabled {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--button-bg);
+        border: 2px solid var(--button-border);
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0);
+        color: black;
+        user-select: none;
+        box-shadow: 2px 2px 5px var(--button-shadow);
+      }
+
+      .nav-button_disabled:hover {
+        background: rgba(255, 255, 255, 0);
+        border-color: rgba(0, 0, 0, 0);
         color: white;
       }
 
@@ -202,7 +231,6 @@
         transition: all 0.3s ease-in-out;
         cursor: pointer;
         box-shadow: 0px 4px 10px var(--soft-shadow);
-        margin-top: 20px;
       }
 
       .moral-button:hover {
@@ -227,13 +255,17 @@
 
     <!-- Angel Path Slider -->
     <div class="slider-container">
-      <button class="nav-button prev" onclick="changeSlide(-1)">&#9665;</button>
+      <button id="buttonprev" class="nav-button prev" onclick="changeSlide(-1)">
+        &#9665;
+      </button>
       <div class="slider">
         <img src="3a.png" class="slide active" />
         <img src="3b.png" class="slide" />
         <img src="3c.png" class="slide" id="final-slide" />
       </div>
-      <button class="nav-button next" onclick="changeSlide(1)">&#9655;</button>
+      <button id="buttonnext" class="nav-button next" onclick="changeSlide(1)">
+        &#9655;
+      </button>
     </div>
 
     <!-- Moral Button (Hidden Initially) -->
@@ -250,13 +282,40 @@
       let currentIndex = 0;
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".dot");
+      const button_next = document.getElementById("buttonnext");
+      const button_prev = document.getElementById("buttonprev");
       const moralButton = document.getElementById("moral-button");
+
+      if (currentIndex == 0) {
+        button_prev.disabled = true;
+        button_prev.className = "nav-button_disabled prev";
+      } else {
+        button_prev.disabled = false;
+        button_prev.className = "nav-button prev";
+      }
 
       function changeSlide(step) {
         slides[currentIndex].classList.remove("active");
         dots[currentIndex].classList.remove("active");
 
         currentIndex = (currentIndex + step + slides.length) % slides.length;
+
+        //Enable and disable buttons.
+        if (currentIndex == 2) {
+          button_next.disabled = true;
+          button_next.className = "nav-button_disabled next";
+        } else {
+          button_next.disabled = false;
+          button_next.className = "nav-button next";
+        }
+
+        if (currentIndex == 0) {
+          button_prev.disabled = true;
+          button_prev.className = "nav-button_disabled prev";
+        } else {
+          button_prev.disabled = false;
+          button_prev.className = "nav-button prev";
+        }
 
         slides[currentIndex].classList.add("active");
         dots[currentIndex].classList.add("active");

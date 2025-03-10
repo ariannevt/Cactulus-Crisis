@@ -148,6 +148,35 @@
         color: white;
       }
 
+      /* Disabled buttons */
+      .nav-button_disabled {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--button-bg);
+        border: 2px solid var(--button-border);
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0);
+        color: black;
+        user-select: none;
+        box-shadow: 2px 2px 5px var(--button-shadow);
+      }
+
+      .nav-button_disabled:hover {
+        background: rgba(255, 255, 255, 0);
+        border-color: rgba(0, 0, 0, 0);
+        color: white;
+      }
+
       .prev {
         left: -80px;
       }
@@ -190,21 +219,25 @@
 
       /* Moral Button */
       .moral-button {
-        display: none; /* Initially hidden */
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 1.5rem;
-        font-family: "STIX Two Math", serif;
-        background-color: var(--hover-color);
-        color: white;
-        border: none;
+        bottom: 1.2rem;
+        display: none; /* Hidden by default */
+        background: #e6e6e6;
+        border: 2px solid #777;
+        padding: 12px 24px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
         border-radius: 10px;
+        transition: all 0.3s ease-in-out;
         cursor: pointer;
-        transition: 0.3s;
+        box-shadow: 0px 4px 10px var(--soft-shadow);
       }
 
       .moral-button:hover {
-        background-color: #d02550;
+        background: var(--hover-color);
+        border-color: var(--hover-color);
+        color: white;
       }
     </style>
   </head>
@@ -223,20 +256,17 @@
 
     <!-- Baddie Path Slider -->
     <div class="slider-container">
-      <button class="nav-button prev" onclick="changeSlide(-1)">&#9665;</button>
+      <button id="buttonprev" class="nav-button prev" onclick="changeSlide(-1)">
+        &#9665;
+      </button>
       <div class="slider">
         <img src="4a.png" class="slide active" />
         <img src="4b.png" class="slide" />
         <img src="4c.png" class="slide" id="slide-4c" />
       </div>
-      <button class="nav-button next" onclick="changeSlide(1)">&#9655;</button>
-    </div>
-
-    <!-- Dots Navigation -->
-    <div class="dots">
-      <span class="dot active" onclick="goToSlide(0)"></span>
-      <span class="dot" onclick="goToSlide(1)"></span>
-      <span class="dot" onclick="goToSlide(2)"></span>
+      <button id="buttonnext" class="nav-button next" onclick="changeSlide(1)">
+        &#9655;
+      </button>
     </div>
 
     <!-- Moral Button (Initially Hidden) -->
@@ -248,11 +278,29 @@
       Moral
     </button>
 
+    <!-- Dots Navigation -->
+    <div class="dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+
     <script>
       let currentIndex = 0;
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".dot");
+      const button_next = document.getElementById("buttonnext");
+      const button_prev = document.getElementById("buttonprev");
+
       const moralButton = document.getElementById("moral-button");
+
+      if (currentIndex == 0) {
+        button_prev.disabled = true;
+        button_prev.className = "nav-button_disabled prev";
+      } else {
+        button_prev.disabled = false;
+        button_prev.className = "nav-button prev";
+      }
 
       function changeSlide(step) {
         slides[currentIndex].classList.remove("active");
@@ -262,6 +310,23 @@
 
         slides[currentIndex].classList.add("active");
         dots[currentIndex].classList.add("active");
+
+        //Enable and disable buttons.
+        if (currentIndex == 2) {
+          button_next.disabled = true;
+          button_next.className = "nav-button_disabled next";
+        } else {
+          button_next.disabled = false;
+          button_next.className = "nav-button next";
+        }
+
+        if (currentIndex == 0) {
+          button_prev.disabled = true;
+          button_prev.className = "nav-button_disabled prev";
+        } else {
+          button_prev.disabled = false;
+          button_prev.className = "nav-button prev";
+        }
 
         // Show Moral button only when on slide 4c
         if (slides[currentIndex].id === "slide-4c") {
