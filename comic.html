@@ -309,12 +309,18 @@
 
     <script>
       let currentIndex = 0;
+
+      //Audios
+      let sound_image_1 = new Audio("media/ididntstudy.mp3");
+      let sound_image_3 = new Audio("media/angelsarrive.mp3");
+
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".dot");
       const button_next = document.getElementById("buttonnext");
       const button_prev = document.getElementById("buttonprev");
 
       if (currentIndex == 0) {
+        sound_image_1.play();
         button_prev.disabled = true;
         button_prev.className = "nav-button_disabled prev";
       } else {
@@ -330,6 +336,7 @@
 
         //Enable and disable buttons.
         if (currentIndex == 2) {
+          sound_image_3.play();
           button_next.disabled = true;
           button_next.className = "nav-button_disabled next";
         } else {
@@ -337,7 +344,12 @@
           button_next.className = "nav-button next";
         }
 
+        if (currentIndex == 1) {
+          stopAudios();
+        }
+
         if (currentIndex == 0) {
+          sound_image_1.play();
           button_prev.disabled = true;
           button_prev.className = "nav-button_disabled prev";
         } else {
@@ -347,6 +359,13 @@
 
         slides[currentIndex].classList.add("active");
         dots[currentIndex].classList.add("active");
+      }
+
+      function stopAudios() {
+        sound_image_1.currentTime = 0;
+        sound_image_3.currentTime = 0;
+        sound_image_1.pause();
+        sound_image_3.pause();
       }
 
       function goToSlide(index) {

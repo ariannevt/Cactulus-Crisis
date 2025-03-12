@@ -280,6 +280,11 @@
 
     <script>
       let currentIndex = 0;
+
+      //Audios
+      let sound_image_1 = new Audio("media/writing.mp3");
+      let sound_image_3 = new Audio("media/he_passed.mp3");
+
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".dot");
       const button_next = document.getElementById("buttonnext");
@@ -287,6 +292,7 @@
       const moralButton = document.getElementById("moral-button");
 
       if (currentIndex == 0) {
+        sound_image_1.play();
         button_prev.disabled = true;
         button_prev.className = "nav-button_disabled prev";
       } else {
@@ -302,6 +308,7 @@
 
         //Enable and disable buttons.
         if (currentIndex == 2) {
+          sound_image_3.play();
           button_next.disabled = true;
           button_next.className = "nav-button_disabled next";
         } else {
@@ -309,7 +316,12 @@
           button_next.className = "nav-button next";
         }
 
+        if (currentIndex == 1) {
+          stopAudios();
+        }
+
         if (currentIndex == 0) {
+          sound_image_1.play();
           button_prev.disabled = true;
           button_prev.className = "nav-button_disabled prev";
         } else {
@@ -325,6 +337,13 @@
           moralButton.style.display = "block";
         } else {
           moralButton.style.display = "none";
+        }
+
+        function stopAudios() {
+          sound_image_1.currentTime = 0;
+          sound_image_3.currentTime = 0;
+          sound_image_1.pause();
+          sound_image_3.pause();
         }
       }
     </script>
